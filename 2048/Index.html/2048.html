@@ -1,0 +1,83 @@
+ <head>  
+    <title> 2048 </title>
+
+  <body>
+   <h1> Use the arrow keys! 
+  <div id = "grid" ></div>
+
+  <style> 
+   #grid   {
+   display : grid;
+   grid-template-columns: repeat(4,80px);
+   grid-template-rows: repeat(4,80px);
+   gap: 8px;
+   background-color : sandybrown;
+   padding: 10px;
+   border-radius: 8px;
+   width: fit-content;
+   }
+   
+   body {
+   margin: 0;
+   height: auto;
+   display: flex;
+   align-items: center;
+   justify-content: center;   
+   }
+
+
+
+   .cell {
+   background-color: seagreen;
+   border-radius: 8px;    
+   display: grid;
+   align-items: center;
+   justify-content: center;
+   font-size: large;
+   font-weight: normal;
+   }
+  </style>
+
+   <script>
+   const grid48 = document.getElementById('grid');
+   let grd = [
+      [0,0,0,0],
+      [0,0,0,0],
+      [0,0,0,0],
+      [0,0,0,0]
+   ];
+   function  addRanT() {
+      let mt = [];
+      for (let r = 0; r < 4; r++) {
+       for (let c = 0; c < 4; c++) {
+        if(grd[r][c] === 0) mt.push([r,c]);
+       } 
+      }
+     if(mt.length === 0) return;
+     
+     let[r,c] = mt[Math.floor(Math.random()*mt.length)];
+     grd[r][c] = Math.random() < 0.8 ? 2 : 0.15 ? 4 : 8;
+   }
+
+   function show() {
+   grid48.innerHTML = '';
+   for (let r = 0; r < 4; r++) {
+    for (let c = 0; c < 4; c++) {
+      const cell = document.createElement('div');
+      cell.className = 'cell';
+      if(grd[r][c] !== 0) {
+      cell.textContent = grd[r][c];   
+      }
+      grid48.appendChild(cell);
+    }
+   }
+   }
+   
+   addRanT();
+   addRanT();
+   show();
+   </script>
+
+
+ </html>      
+    
